@@ -46,6 +46,7 @@ gulp.task('build-vendor', function () {
         // css
         .pipe(cssFilter)
         .pipe($.concat(buildArtifact.vendorCss))
+        .pipe($.replace("url('..", "url('../assets/"))
         .pipe(gulp.dest(app.output + buildArtifact.assets))
         .pipe(cssFilter.restore)
 
