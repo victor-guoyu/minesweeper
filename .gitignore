@@ -4,3 +4,9 @@
 # Folder view configuration files
 .DS_Store
 .idea
+bower_components
+node_modules
+typings
+frontend/app/**/*.js
+frontend/app/**/*.map
+public

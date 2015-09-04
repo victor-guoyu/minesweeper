@@ -1,0 +1,36 @@
+{
+  "name": "minesweeper",
+  "version": "1.0.1",
+  "description": "Play around with Python and Pyramid",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HelloBugs/minesweeper.git"
+  },
+  "author": "Victor Guo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HelloBugs/minesweeper/issues"
+  },
+  "homepage": "https://github.com/HelloBugs/minesweeper#readme",
+  "devDependencies": {
+    "del": "^2.0.0",
+    "gulp": "^3.9.0",
+    "gulp-angular-templatecache": "^1.7.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-filter": "^3.0.1",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-template": "^3.0.0",
+    "gulp-typescript": "^2.8.1",
+    "gulp-uglify": "^1.4.0",
+    "main-bower-files": "^2.9.0",
+    "typescript": "^1.6.0-beta"
+  }
+}

@@ -1,0 +1,16 @@
+CHANGES.txt
+MANIFEST.in
+README.txt
+development.ini
+production.ini
+setup.py
+Minesweeper.egg-info/PKG-INFO
+Minesweeper.egg-info/SOURCES.txt
+Minesweeper.egg-info/dependency_links.txt
+Minesweeper.egg-info/entry_points.txt
+Minesweeper.egg-info/not-zip-safe
+Minesweeper.egg-info/requires.txt
+Minesweeper.egg-info/top_level.txt
+minesweeper/__init__.py
+minesweeper/static.py
+minesweeper/tests.py
