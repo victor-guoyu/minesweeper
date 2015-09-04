@@ -21,7 +21,6 @@ var buildArtifact = {
 };
 
 var templateOptions = {
-    root: 'app/',
     module: 'app'
 };
 
@@ -110,7 +109,7 @@ gulp.task('build-partial-cache', function () {
     return gulp.src(app.src + '**/*.html')
          .pipe($.minifyHtml(minifyHtmlOptions))
          .pipe($.angularTemplatecache(buildArtifact.appTemplate, templateOptions))
-         .pipe(gulp.dest(app.output + buildArtifact.jsPath));
+         .pipe(gulp.dest(app.output + buildArtifact.assets));
 });
 
 /**

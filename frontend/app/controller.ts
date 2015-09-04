@@ -34,14 +34,12 @@ module app.controllers {
 
     class HomeController implements IHomeController{
         model: IHomeModel;
-        static $inject = ['$log', '$scope', 'homeModel'];
+        static $inject = ['$log', '$scope'];
         constructor(
             private $log: ng.ILogService,
-            private $scope: IHomeScope,
-            private homeModel: IHomeModel
+            private $scope: IHomeScope
         ) {
             $scope.vm = this;
-            this.model = homeModel;
         }
     }
 

@@ -1,1 +1,0 @@
-ALL the files in this folder are auto-generated and will be overwritten.
