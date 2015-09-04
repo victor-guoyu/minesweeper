@@ -76,7 +76,7 @@ gulp.task('generate-index-html', function () {
  */
 gulp.task('copy-assets', function () {
     gulp.src(app.assets + '**/*.*')
-        .pipe(gulp.dest(app.output + app.assets));
+        .pipe(gulp.dest('public/assets'));
 });
 
 /**
