@@ -33,7 +33,7 @@ module app.controllers {
             // Intentionally set time out for 2s in order show the pacman loading screen
             setTimeout(() => {
                 this.createGame()
-            }, 2000);
+            }, 5000);
             this.createGame();
         }
 
@@ -74,7 +74,7 @@ module app.controllers {
             this.apiService.api
                 .updateGame(
                     {
-                        id: this.$state.params.id
+                        id: this.$state.params.game_id
                     },
                     updateRequest
                 ).$promise
@@ -95,7 +95,7 @@ module app.controllers {
             this.apiService.api
                 .updateGame(
                     {
-                        id: this.$state.params.id
+                        id: this.$state.params.game_id
                     },
                     updateRequest
                 ).$promise

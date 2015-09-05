@@ -25,7 +25,7 @@ module app.services {
                     isArray: false
                 },
                 updateGame: {
-                    method: 'POST',
+                    method: 'POST'
                 }
             });
     }
