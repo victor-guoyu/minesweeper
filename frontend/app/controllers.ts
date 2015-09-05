@@ -34,7 +34,6 @@ module app.controllers {
             setTimeout(() => {
                 this.createGame()
             }, 1000);
-            //this.createGame();
         }
 
         private createGame = () => {
@@ -49,6 +48,7 @@ module app.controllers {
     }
 
     class PlayController implements IPlayController{
+        private pollingId: number;
         model: IGameModel;
         static $inject = ['$log', '$state', '$scope', 'apiService', 'game'];
         constructor(
@@ -62,6 +62,9 @@ module app.controllers {
 
             //Assign initial game model
             this.model = game;
+            if (!game.game_status) {
+                this.pollingId = this.startPolling();
+            }
         }
 
         clickHandler = (cell:ICell, action: string) => {
@@ -85,12 +88,31 @@ module app.controllers {
                     //update game
                     this.$log.debug('PlayController:clickHandler received game', game);
                     this.model = game;
+                    if (game.game_status) {
+                        this.stopPolling();
+                    }
                 });
         };
 
         newGame = ():void => {
             this.$log.debug('PlayController:newGame starting a new game');
             this.$state.go('home');
+        };
+
+        private startPolling = ():number => {
+            this.$log.debug('PlayController:startPolling long poling begins');
+            var pollingId = setInterval(() => {
+                 this.apiService.api.getGame({id: this.$state.params.game_id}).$promise
+                    .then((game: IGameModel) => {
+                        this.model = game;
+                    });
+            }, 500);
+            return pollingId;
+        };
+
+        private stopPolling = () => {
+            this.$log.debug('PlayController:startPolling long poling ends');
+            clearInterval(this.pollingId);
         };
     }
 
