@@ -81,6 +81,9 @@ class Board:
         cell = self.__game_board[x][y]
         if cell.revealed:
             return
+        if cell.marked:
+            cell.marked = False
+            self.__marked_cells -= 1
         if cell.state:
             # game over
             self.game_over = True

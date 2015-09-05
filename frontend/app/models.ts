@@ -11,6 +11,7 @@ module app {
     export interface IPlayController {
         model: IGameModel;
         clickHandler(cell: ICell, action: string): void;
+        newGame(): void;
     }
 
     export interface IPlayScope extends ng.IScope {

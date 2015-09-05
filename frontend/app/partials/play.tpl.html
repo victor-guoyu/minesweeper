@@ -6,6 +6,28 @@
         </p>
     </div>
     <div class="row">
+        <div ng-show="vm.model.game_status && vm.model.win"
+             class="alert alert-success"
+             role="alert">
+            <strong>Well done!</strong> You have won !
+            <button type="button"
+                    class="btn btn-link"
+                    ng-click="vm.newGame()"
+                    >Restart
+            </button>
+        </div>
+        <div ng-show="vm.model.game_status && !vm.model.win"
+             class="alert alert-danger"
+             role="alert">
+            <strong>Oh snap!</strong> boomshakalaka ........
+            <button type="button"
+                    class="btn btn-link"
+                    ng-click="vm.newGame()"
+                    >Restart
+            </button>
+        </div>
+    </div>
+    <div class="row">
         <table class="center" cellpadding="10">
             <tr ng-repeat="row in vm.model.board">
                 <td class="normal-cell"

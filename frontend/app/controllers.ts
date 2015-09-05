@@ -30,11 +30,11 @@ module app.controllers {
             private $scope: ng.IScope,
             private apiService: IApiService
         ) {
-            // Intentionally set time out for 2s in order show the pacman loading screen
+            // Intentionally set time out for 5s in order show the pacman loading screen
             setTimeout(() => {
                 this.createGame()
-            }, 5000);
-            this.createGame();
+            }, 500000);
+            //this.createGame();
         }
 
         private createGame = () => {
@@ -65,7 +65,7 @@ module app.controllers {
         }
 
         clickHandler = (cell:ICell, action: string) => {
-            if (cell.revealed || cell.state) {
+            if (cell.revealed || cell.state || this.model.game_status) {
                 return;
             }
             var updateRequest: IUpdateRequest = {
@@ -85,8 +85,28 @@ module app.controllers {
                     //update game
                     this.$log.debug('PlayController:clickHandler received game', game);
                     this.model = game;
+                    this.isGG(game);
                 });
         };
+
+        newGame = ():void => {
+            this.$log.debug('PlayController:newGame starting a new game');
+            this.$state.go('home');
+        };
+
+        private isGG = (game: IGameModel):void => {
+            if (game.game_status) {
+                // if game is finished, no matter win or lost,
+                // compare use board with server board and provide feedback
+                if (game.win){
+                    // game finished and you won
+                    // TODO what to do when you win?
+                } else {
+                    // game finished and you lost
+                    // TODO what to do when you lost?
+                }
+            }
+        }
     }
 
     angular.module('app')
