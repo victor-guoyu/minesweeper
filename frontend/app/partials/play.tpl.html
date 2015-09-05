@@ -2,13 +2,17 @@
     <div class="jumbotron">
         <h1>Minesweeper</h1>
         <p class="lead">
-            left click open a cell, right click mark the cell
+            left click open a cell, right click mark the cell.
         </p>
     </div>
     <div class="row">
-        <table cellpadding="10">
-            <tr ng-repeat="row in rows" index = i>
-                <rd ng-repeat="cell in row" index = j ng-click = vm.click(i, j)></rd>
+        <table class="center" cellpadding="10">
+            <tr ng-repeat="row in vm.model.board">
+                <td class="normal-cell"
+                    ng-repeat="cell in row"
+                    ng-right-click="vm.markCell(cell)"
+                    ng-click = "vm.openCell(cell)">
+                </td>
             </tr>
         </table>
     </div>

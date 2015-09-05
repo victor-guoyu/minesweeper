@@ -38,7 +38,8 @@ module app.controllers {
             this.apiService.api.createGame().$promise
                 .then((game: IGameModel) => {
                     this.$log.debug('HomeController: createGame', game);
-                    this.$state.go('play', {id: game.id})
+                    this.$log.debug('HomeController: game id', game.id);
+                    this.$state.go('play', {game_id: game.id})
                 });
         }
     }
@@ -59,11 +60,11 @@ module app.controllers {
             this.model = game;
         }
 
-        openCell = (posx, posy) => {
+        openCell = (cell) => {
             var updateRequest: IUpdateRequest = {
                 method: 'open',
-                x: posx,
-                y: posy
+                x: cell.x,
+                y: cell.y
             };
             this.$log.debug('PlayController:openCell ', updateRequest);
             this.apiService.api
@@ -72,7 +73,7 @@ module app.controllers {
                         id: this.$state.params.id
                     },
                     updateRequest
-                )
+                ).$promise
                 .then((game: IGameModel) => {
                     //update game
                     this.$log.debug('PlayController:openCell received game', game);
@@ -80,11 +81,11 @@ module app.controllers {
                 });
         };
 
-        markCell = (posx, posy) => {
+        markCell = (cell) => {
             var updateRequest: IUpdateRequest = {
                 method: 'mark',
-                x: posx,
-                y: posy
+                x: cell.x,
+                y: cell.y
             };
             this.$log.debug('PlayController:markCell ', updateRequest);
             this.apiService.api
@@ -93,7 +94,7 @@ module app.controllers {
                         id: this.$state.params.id
                     },
                     updateRequest
-                )
+                ).$promise
                 .then((game: IGameModel) => {
                     //update game
                     this.$log.debug('PlayController:markCell received game', game);

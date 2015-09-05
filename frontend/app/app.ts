@@ -2,7 +2,7 @@
 
 (():void => {
     'use strict';
-    angular.module('app', ['ui.router']);
+    angular.module('app', ['ui.router', 'ngResource']);
 
     // Route configuration
     function routeConfig(
@@ -23,7 +23,7 @@
                     game: [
                         'gameModelBuilder',
                         '$stateParams',
-                        (builder, $stateParams) => builder.getModel($stateParams.id)
+                        (builder, $stateParams) => builder.getModel($stateParams.game_id)
                     ]
                 }
             });

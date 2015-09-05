@@ -1,1 +1,21 @@
-/*TODO*/
+table td {
+  width: 40px;
+  height: 40px;
+}
+
+.center {
+  margin: 0 auto !important;
+}
+
+.normal-cell {
+  border: 1px solid #FDFDFF;
+  background-color: #b4b4ff;
+}
+
+.bomb-cell {
+    background-color: #E84E4E !important;
+}
+
+.revealed-cell {
+    background-color: #D6DEE4 !important;
+}

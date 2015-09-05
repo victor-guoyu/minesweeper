@@ -10,8 +10,8 @@ module app {
 
     export interface IPlayController {
         model: IGameModel;
-        openCell(x: number, y: number):void;
-        markCell(x: number, y: number):void;
+        openCell(cell: ICell):void;
+        markCell(cell: ICell):void;
     }
 
     export interface IPlayScope extends ng.IScope {
