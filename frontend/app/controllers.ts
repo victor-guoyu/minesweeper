@@ -30,6 +30,10 @@ module app.controllers {
             private $scope: ng.IScope,
             private apiService: IApiService
         ) {
+            // Intentionally set time out for 2s in order show the pacman loading screen
+            setTimeout(() => {
+                this.createGame()
+            }, 2000);
             this.createGame();
         }
 

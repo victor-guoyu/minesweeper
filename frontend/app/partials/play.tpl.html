@@ -10,8 +10,15 @@
             <tr ng-repeat="row in vm.model.board">
                 <td class="normal-cell"
                     ng-repeat="cell in row"
+                    ng-class="{ 'bomb-cell': cell.state, 'revealed-cell': cell.revealed }"
+                    ng-disabled="cell.revealed || cell.marked || cell.state"
                     ng-right-click="vm.markCell(cell)"
                     ng-click = "vm.openCell(cell)">
+                        <i ng-show ="cell.state" class="fa fa-bomb fa-2x"></i>
+                        <i ng-show ="cell.marked" class="fa fa-flag fa-2x"></i>
+                        <span ng-show="cell.revealed && cell.value > 0">
+                            {{cell.value}}
+                        </span>
                 </td>
             </tr>
         </table>
