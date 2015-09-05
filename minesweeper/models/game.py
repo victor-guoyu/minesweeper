@@ -1,8 +1,11 @@
+from minesweeper.models.board import Board
+
+
 class Game:
 
-    def __init__(self, game_id, board):
+    def __init__(self, game_id):
         self.game_id = game_id
-        self.board = board
+        self.board = Board()
 
     def open_cell(self, x, y):
         if not self.board.game_over:
