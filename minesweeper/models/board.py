@@ -130,7 +130,7 @@ class Board:
     def __open_neighbours(self, cell):
         neighbours = self.__get_neighbours(cell)
         for i in neighbours:
-            if not i.revealed:
+            if not i.revealed and not i.marked:
                 i.revealed = True
                 self.__revealed_cells += 1
                 self.__is_cell_value_zero(i)
