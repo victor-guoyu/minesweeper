@@ -32,12 +32,12 @@
             <tr ng-repeat="row in vm.model.board">
                 <td class="normal-cell"
                     ng-repeat="cell in row"
-                    ng-class="{ 'bomb-cell': cell.state, 'revealed-cell': cell.revealed }"
+                    ng-class="{ 'revealed-cell': cell.revealed, 'bomb-cell': cell.state}"
                     ng-right-click="vm.clickHandler(cell, 'mark')"
                     ng-click = "vm.clickHandler(cell, 'open')">
                         <i ng-show ="cell.state" class="fa fa-bomb fa-2x"></i>
                         <i ng-show ="cell.marked" class="fa fa-flag fa-2x"></i>
-                        <span ng-show="cell.revealed && cell.value > 0 && !cell.state">
+                        <span ng-show="cell.revealed && cell.value > 0 && !cell.state && !cell.marked">
                             {{cell.value}}
                         </span>
                 </td>

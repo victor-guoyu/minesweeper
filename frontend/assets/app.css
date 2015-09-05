@@ -14,10 +14,23 @@ table td {
   background-color: #b4b4ff;
 }
 
+.revealed-cell {
+    background-color: #D6DEE4 !important;
+}
+
 .bomb-cell {
     background-color: #E84E4E !important;
 }
 
-.revealed-cell {
-    background-color: #D6DEE4 !important;
+.la-pacman {
+    color: #37373A !important;
+}
+
+.loading-text {
+    text-align: center;
+    font-size: 35px;
+}
+
+.spacer {
+    margin-top: 150px;
 }
