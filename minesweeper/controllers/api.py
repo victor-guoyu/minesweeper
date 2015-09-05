@@ -32,6 +32,7 @@ class GameResource:
 
         return {
             'id': game_id,
+            'win': game.is_win(),
             'game_status': game.is_game_over(),
             'board': game.get_user_board()
         }
@@ -47,8 +48,8 @@ class GameResource:
 
         return {
             'id': game_id,
+            'win': game.is_win(),
             'game_status': game.is_game_over(),
-            'msg': 'get existing game',
             'board': game.get_user_board()
         }
 
@@ -75,6 +76,7 @@ class GameResource:
 
         return {
             'id': game_id,
+            'win': game.is_win(),
             'game_status': game.is_game_over(),
             'board': game.get_user_board()
         }

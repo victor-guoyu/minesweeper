@@ -9,11 +9,24 @@
         $stateProvider: ng.ui.IStateProvider,
         $urlRouterProvider: ng.ui.IUrlRouterProvider
     ) {
-        $stateProvider.state('home', {
+        $stateProvider
+            .state('home', {
             url: '/',
             templateUrl: 'partials/home.tpl.html',
             controller: 'homeController'
-        });
+            })
+            .state('play', {
+                url: "/play/:game_id",
+                templateUrl: 'partials/play.tpl.html',
+                controller: 'playController',
+                resolve: {
+                    game: [
+                        'gameModelBuilder',
+                        '$stateParams',
+                        (builder, $stateParams) => builder.getModel($stateParams.id)
+                    ]
+                }
+            });
         $urlRouterProvider.otherwise('/');
     }
     routeConfig.$inject = ['$stateProvider', '$urlRouterProvider'];

@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>Minesweeper</h1>
+        <p class="lead">
+            left click open a cell, right click mark the cell
+        </p>
+    </div>
+    <div class="row">
+        <table cellpadding="10">
+            <tr ng-repeat="row in rows" index = i>
+                <rd ng-repeat="cell in row" index = j ng-click = vm.click(i, j)></rd>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -20,3 +20,6 @@ class Game:
 
     def get_user_board(self):
         return self.board.user_board
+
+    def is_win(self):
+        return self.board.check_win()
