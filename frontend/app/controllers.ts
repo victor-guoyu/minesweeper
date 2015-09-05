@@ -64,13 +64,16 @@ module app.controllers {
             this.model = game;
         }
 
-        openCell = (cell) => {
+        clickHandler = (cell:ICell, action: string) => {
+            if (cell.revealed || cell.state) {
+                return;
+            }
             var updateRequest: IUpdateRequest = {
-                method: 'open',
+                method: action,
                 x: cell.x,
                 y: cell.y
             };
-            this.$log.debug('PlayController:openCell ', updateRequest);
+            this.$log.debug('PlayController:clickHandler ', updateRequest);
             this.apiService.api
                 .updateGame(
                     {
@@ -80,28 +83,7 @@ module app.controllers {
                 ).$promise
                 .then((game: IGameModel) => {
                     //update game
-                    this.$log.debug('PlayController:openCell received game', game);
-                    this.model = game;
-                });
-        };
-
-        markCell = (cell) => {
-            var updateRequest: IUpdateRequest = {
-                method: 'mark',
-                x: cell.x,
-                y: cell.y
-            };
-            this.$log.debug('PlayController:markCell ', updateRequest);
-            this.apiService.api
-                .updateGame(
-                    {
-                        id: this.$state.params.game_id
-                    },
-                    updateRequest
-                ).$promise
-                .then((game: IGameModel) => {
-                    //update game
-                    this.$log.debug('PlayController:markCell received game', game);
+                    this.$log.debug('PlayController:clickHandler received game', game);
                     this.model = game;
                 });
         };

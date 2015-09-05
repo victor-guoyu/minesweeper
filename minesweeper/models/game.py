@@ -5,6 +5,7 @@ class Game:
 
     def __init__(self, game_id):
         self.game_id = game_id
+        print(game_id)
         self.board = Board()
 
     def open_cell(self, x, y):

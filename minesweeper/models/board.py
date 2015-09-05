@@ -63,11 +63,18 @@ class Board:
         self.print_map()
 
     def mark_cell(self, x, y):
-        if self.__marked_cells >= self.number_of_mines:
+        cell = self.__game_board[x][y]
+        if self.__marked_cells >= self.number_of_mines or cell.revealed:
             return
-        self.__game_board[x][y].marked = not self.__game_board[x][y].marked
+
+        if cell.marked:
+            cell.marked = False
+            self.__marked_cells -= 1
+        else:
+            cell.marked = True
+            self.__marked_cells += 1
+
         self.__update_user_board()
-        self.__marked_cells += 1
         return self.user_board
 
     def open_cell(self, x, y):
@@ -107,8 +114,11 @@ class Board:
         for i in range(self.grid_size):
             for j in range(self.grid_size):
                 cell = self.__game_board[i][j]
-                if cell.marked or cell.revealed:
-                    self.user_board[i][j] = cell
+                user_cell = self.user_board[i][j]
+                user_cell.marked = cell.marked
+                user_cell.revealed = cell.revealed
+                if cell.revealed:
+                    user_cell.cell_value = cell.cell_value
 
     def __is_cell_value_zero(self, cell):
         if cell.cell_value == 0:
@@ -202,9 +212,11 @@ class Board:
             return Position(position.x + 1, position.y + 1)
 
     def print_map(self):
+        print('bombs cheat sheet')
         print('\n'.join([''.join(['{:4}'.format(item.state)
                                   for item in row]) for row in self.__game_board]))
 
-        print('=============================================================')
+        print('count cheat sheet')
         print('\n'.join([''.join(['{:4}'.format(item.cell_value)
                                   for item in row]) for row in self.__game_board]))
+        print('=============================================================')
