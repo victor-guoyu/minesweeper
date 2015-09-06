@@ -38,7 +38,11 @@
             <tr ng-repeat="row in vm.model.board">
                 <td class="normal-cell"
                     ng-repeat="cell in row"
-                    ng-class="{ 'revealed-cell': cell.revealed, 'bomb-cell': cell.state}"
+                    ng-class="{
+                                'revealed-cell': cell.revealed,
+                                'bomb-cell': cell.state && vm.model.game_status && !vm.model.win
+                                            && cell.x === vm.model.last_open_x && cell.y === vm.model.last_open_y
+                              }"
                     ng-right-click="vm.clickHandler(cell, 'mark')"
                     ng-click = "vm.clickHandler(cell, 'open')">
                         <i ng-show ="cell.state" class="fa fa-bomb fa-2x"></i>

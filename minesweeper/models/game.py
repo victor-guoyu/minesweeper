@@ -1,4 +1,5 @@
 from minesweeper.models.board import Board
+from minesweeper.models.board import Position
 
 
 class Game:
@@ -7,9 +8,12 @@ class Game:
         self.game_id = game_id
         print(game_id)
         self.board = Board()
+        self.last_open_pos = Position(0, 0)
 
     def open_cell(self, x, y):
         if not self.board.game_over:
+            self.last_open_pos.x = x
+            self.last_open_pos.y = y
             return self.board.open_cell(x, y)
 
     def mark_cell(self, x, y):

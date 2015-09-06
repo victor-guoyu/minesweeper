@@ -30,9 +30,12 @@ module app {
     export interface IGameModel {
         id: string;
         win: boolean;
-        used_flag?: number;
+        used_flag?: number; // This field is calculated at client side
         game_status: boolean;
         board: ICell[][];
+        // The value is undefined if the user hasn't open anything yet
+        last_open_x?: number;
+        last_open_y?: number;
     }
 
     export interface IUpdateRequest {
