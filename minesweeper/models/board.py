@@ -64,7 +64,8 @@ class Board:
 
     def mark_cell(self, x, y):
         cell = self.__game_board[x][y]
-        if self.__marked_cells >= self.number_of_mines or cell.revealed:
+        if self.__marked_cells >= self.number_of_mines and not cell.marked \
+                or cell.revealed:
             return
 
         if cell.marked:
