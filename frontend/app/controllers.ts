@@ -62,6 +62,7 @@ module app.controllers {
 
             //Assign initial game model
             this.model = game;
+            this.model.used_flag = this.countUsedFlag(this.model.board);
             if (!game.game_status) {
                 this.pollingId = this.startPolling();
             }
@@ -88,6 +89,7 @@ module app.controllers {
                     //update game
                     this.$log.debug('PlayController:clickHandler received game', game);
                     this.model = game;
+                    this.model.used_flag = this.countUsedFlag(this.model.board);
                     if (game.game_status) {
                         this.stopPolling();
                     }
@@ -101,18 +103,32 @@ module app.controllers {
 
         private startPolling = ():number => {
             this.$log.debug('PlayController:startPolling long poling begins');
-            var pollingId = setInterval(() => {
+            return setInterval(() => {
                  this.apiService.api.getGame({id: this.$state.params.game_id}).$promise
                     .then((game: IGameModel) => {
                         this.model = game;
+                        this.model.used_flag = this.countUsedFlag(this.model.board);
                     });
             }, 500);
-            return pollingId;
         };
 
         private stopPolling = () => {
             this.$log.debug('PlayController:startPolling long poling ends');
             clearInterval(this.pollingId);
+        };
+
+        private countUsedFlag = (board: ICell[][]):number => {
+            return _.chain(board)
+                .map((row) => {
+                    return _.filter(row, (cell):boolean => {
+                        return cell.marked;
+                    });
+                })
+                .reduce((result, array) => {
+                    return result.concat(array);
+                }, [])
+                .value()
+                .length;
         };
     }
 

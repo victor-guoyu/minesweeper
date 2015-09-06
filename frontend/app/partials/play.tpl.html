@@ -6,6 +6,10 @@
             You can also share the link and play with your friend at same time!<br>
             You have 30 <i class="fa fa-bomb"></i> in total, have fun!
         </p>
+        <p class="lead">
+            You have marked {{vm.model.used_flag}} cell as
+            <i class="fa fa-bomb"></i> remaining <i class="fa fa-flag">{{30 - vm.model.used_flag}}</i>
+        </p>
     </div>
     <div class="row">
         <div ng-show="vm.model.game_status && vm.model.win"

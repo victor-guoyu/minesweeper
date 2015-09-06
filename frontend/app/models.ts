@@ -30,6 +30,7 @@ module app {
     export interface IGameModel {
         id: string;
         win: boolean;
+        used_flag?: number;
         game_status: boolean;
         board: ICell[][];
     }
