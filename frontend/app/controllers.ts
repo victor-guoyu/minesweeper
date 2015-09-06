@@ -5,10 +5,11 @@ module app.controllers {
     'use strict';
     class GameModelBuilder implements IModelBuilder<IGameModel> {
 
-        static $inject = ['$log', 'apiService'];
+        static $inject = ['$log', 'apiService', '$state'];
         constructor(
             private $log: ng.ILogService,
-            private apiService: IApiService
+            private apiService: IApiService,
+            private $state: ng.ui.IStateService
         ) {}
 
         getModel = (id: string):ng.IPromise<IGameModel> => {
@@ -17,6 +18,10 @@ module app.controllers {
                 .then((game: IGameModel) => {
                     this.$log.debug('PlayModelBuilder:getModel received model', game);
                     return game;
+                })
+                .catch(() => {
+                    // If game not found, return home
+                    this.$state.go('home');
                 });
         };
     }
